@@ -15,7 +15,7 @@ class UserFormType extends AbstractType
     {
         $builder
             ->add('username')
-            ->add('roles',CollectionType::class)
+            //->add('roles',CollectionType::class)->setData("ROLE_USER")
             ->add('password',PasswordType::class)
             ->add('name')
         ;
