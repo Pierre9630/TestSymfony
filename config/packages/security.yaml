@@ -21,6 +21,7 @@ security:
             #form_login : ~
 
             #form_login:
+                #target_path_parameter: app_user_index
                 #login_path: app_login
                 #check_path: app_login
                 #default_target_path: app_user_index
