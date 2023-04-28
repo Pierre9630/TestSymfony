@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Products;
 use App\Entity\User;
 use App\Form\UserFormType;
+use App\Form\AdminFormType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -34,7 +35,7 @@ class AdminController extends AbstractController
     public function new(Request $request, UserRepository $userRepository,UserPasswordHasherInterface $userPasswordHasher ): Response
     {
         $admin = new User();
-        $form = $this->createForm(UserFormType::class, $admin);
+        $form = $this->createForm(AdminFormType::class, $admin);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
