@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello IndexController!{% endblock %}
+
+{% block body %}
+    {# <p>{% for day,hours in openhours %}
+    <h3>{{ day }}</h3>
+    {% if hours != '' %}
+        {{ hours }}
+    {% else %}
+        fermé
+    {% endif %}
+{% endfor %}  </p>#}
+    {{ dump(resslots) }}
+    <p>{% for resslot in resslots %}
+            <button type="submit" formmethod="post">{{ resslot }}</button>
+        {% endfor %}</p>
+
+{% endblock %}
+{% block javascripts %}
+
+{% endblock %}

@@ -1,0 +1,58 @@
+
+<footer class="bg-light text-center text-lg-start">
+    <!-- Grid container -->
+    <div class="container p-4">
+        <!--Grid row-->
+        <div class="row">
+            <!--Grid column-->
+            <div class="col-lg-8 col-md-12 mb-4 mb-md-0">
+
+
+                <p>
+                    © 2020 Copyright
+                </p>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+
+
+                <p>
+
+                    {% set trans_day_hash = {
+                        "monday": "Lundi",
+                        "tuesday": "Mardi",
+                        "wednesday": "Mercredi",
+                        "thursday": "Jeudi",
+                        "friday": "Vendredi",
+                        "saturday": "Samedi",
+                        "sunday": "Dimanche"
+                    }
+                    %}
+                <h1>Réserver une table</h1>
+                {% set OpenHours = OpenHoursMethod()  %}
+                <p>{% for day,hours in OpenHours %}
+                <h3>{{ trans_day_hash[day] }}</h3>
+                {% if hours != '' %}
+                    {{ hours }}
+                {% else %}
+                    fermé
+                {% endif %}
+                {% endfor %}
+
+                </p>
+            </div>
+            <!--Grid column-->
+        </div>
+        <!--Grid row-->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <!--<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2020 Copyright:
+        <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    </div>-->
+    <!-- Copyright -->
+</footer>

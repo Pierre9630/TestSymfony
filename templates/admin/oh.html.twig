@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Heures d'ouverture{% endblock %}
+
+{% block body %}
+    <h3>Tableau des horaires (id 0 = dimanche id 6 = samedi pour une ouverture midi et soir mettre deux entrées avec l'id du jour (par exemple id 2 (mardi) 12:00 14:00 et id 2
+    18:00 21:00</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id du Jour</th>
+            <th>Heure D'ouverture</th>
+            <th>Heure De fermeture</th>
+            <th>Supprimer ?</th>
+        </tr>
+        </thead>
+        {# https://stackoverflow.com/questions/37907867/how-to-display-a-twig-date-in-french #}
+        {% set trans_day_hash = {
+            1: "Lundi",
+            2: "Mardi",
+            3: "Mercredi",
+            4: "Jeudi",
+            5: "Vendredi",
+            6: "Samedi",
+            0: "Dimanche"
+        }
+        %}
+        <tbody> {# https://stackoverflow.com/questions/8318914/how-to-render-a-datetime-object-in-a-twig-template #}
+        {% for open in oh %}
+            <tr>
+                <td>{{ trans_day_hash[open.day] }}</td>
+                <td>{{ open.opentime|date('H:i') }}</td>
+                <td>{{ open.closetime|date('H:i') }}</td>
+                <td><a href="{{ path('app_admin_oh_delete', {id:open.id}) }}">Supprimer</a></td>
+
+                <td>
+                    {#  <a href="{{ path('app_user_show', {'id': admin.id}) }}">show</a>
+                    <a href="{{ path('app_user_edit', {'id': admin.id}) }}">edit</a>#}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Pas d'horaires dans la base ! </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h1>Modifier les heures</h1>
+
+    {{ include('admin/_form.html.twig') }}
+
+    <a href="{{ path('app_admin_index') }}">back to list</a>
+{% endblock %}

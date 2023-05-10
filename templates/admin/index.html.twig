@@ -34,6 +34,7 @@
         {% endfor %}
         </tbody>
     </table>
+    {{ knp_pagination_render(users)}}
     <a href="{{ path('app_admin_new') }}">Create new Users</a>
     <h1>Admins</h1>
     <table class="table">
@@ -93,6 +94,22 @@
         {% endfor %}
         </tbody>
     </table>
-
+    {#
+    <form action="{{ path('app_res') }}" method="post" name="openinghours">
+        <label for="mondaymid">Lundi Midi:</label>
+        <input type="text" id="mondaymid" name="_mondaymid" value="" />
+        <br />
+        <label for="monsdayevening">Lundi Soir:</label>
+        <input type="text" id="monsdayevening" name="_tuesdaymid" value="" />
+        <br />
+        <label for="tuesdaymid">Mardi Midi:</label>
+        <input type="password" id="tuesdaymid" name="_tuesdaymid" />
+        <br />
+        <label for="tuesdayevening">Mardi Soir:</label>
+        <input type="password" id="tuesdayevening" name="_tuesdayevening" />
+        <br />
+        <br />
+        <input type="submit" name="login" value="Login" />
+    </form> #}
 
 {% endblock %}
