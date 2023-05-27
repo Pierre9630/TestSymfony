@@ -21,25 +21,28 @@
                 <p>
 
                     {% set trans_day_hash = {
-                        "monday": "Lundi",
-                        "tuesday": "Mardi",
-                        "wednesday": "Mercredi",
-                        "thursday": "Jeudi",
-                        "friday": "Vendredi",
-                        "saturday": "Samedi",
-                        "sunday": "Dimanche"
+                        "Monday": "Lundi",
+                        "Tuesday": "Mardi",
+                        "Wednesday": "Mercredi",
+                        "Thursday": "Jeudi",
+                        "Friday": "Vendredi",
+                        "Saturday": "Samedi",
+                        "Sunday": "Dimanche"
                     }
                     %}
                 <h1>Réserver une table</h1>
-                {% set OpenHours = OpenHoursMethod()  %}
-                <p>{% for day,hours in OpenHours %}
+                {% set oh = OpenHoursMethod() %}
+
+                {# <p>{% for day,hours in OpenHours %}
+                        {{ day }}
+
                 <h3>{{ trans_day_hash[day] }}</h3>
-                {% if hours != '' %}
+                {% if hours == 'closed' %}
                     {{ hours }}
                 {% else %}
                     fermé
                 {% endif %}
-                {% endfor %}
+                {% endfor %}#}
 
                 </p>
             </div>

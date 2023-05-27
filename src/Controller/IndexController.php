@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Carbon\Carbon;
+use Carbon\Doctrine\DateTimeType;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Spatie\OpeningHours\OpeningHours;
@@ -27,11 +28,16 @@ class IndexController extends AbstractController
     }
 
     #[Route('/res', name: 'app_res')]
-    public function res(EntityManagerInterface $em, ResSlots $resslots): Response
+    public function res(EntityManagerInterface $em, ResSlots $resslots,  $date = 0): Response
     {
 
         //dd(\DateTime::createFromFormat('Y-m-d H:i:s','2023-05-02 00:00:00'));
-        $numberslots = $resslots->getAvailableTimeSlots($em,Carbon::createFromFormat('Y-m-d H:i:s','2023-05-02 00:00:00'),2);
+        //dd($date);
+        
+        //$finaldate = $date->format('Y-m-d');
+        //dd($finaldate);
+
+        $numberslots = $resslots->getAvailableTimeSlots($em,Carbon::now(),2);
         //dd($numberslots);
         $openingHours = OpeningHours::create([
             'monday' => ['12:00-14:00', '19:00-22:00'],

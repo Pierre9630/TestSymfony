@@ -9,6 +9,30 @@
 import './styles/app.css';
 
 // start the Stimulus application
-import './bootstrap';
+import './js/script';
+//import './bootstrap';
+
+
+/*const promise = fetch("url");
+promise.then(function(response){
+  // executer quand la réponse est recu de API 
+  console.log(response); 
+  setTimeout(() => {
+    resolve('totoese');
+  }, 300);
+}) */
+
+/*const maPromesse = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('toto');
+    }, 300);
+  });
+  
+  maPromesse
+    .then(gestionnaireSuccesA, gestionnaireEchecA)
+    .then(gestionnaireSuccesB, gestionnaireEchecB)
+    .then(gestionnaireSuccesC, gestionnaireEchecC);
+*/
+
 
 

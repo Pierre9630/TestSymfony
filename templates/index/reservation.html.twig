@@ -12,11 +12,12 @@
     {% endif %}
 {% endfor %}  </p>#}
     {{ dump(resslots) }}
-    <p>{% for resslot in resslots %}
-            <button type="submit" formmethod="post">{{ resslot }}</button>
-        {% endfor %}</p>
+    <form method="post" action="#"><input id="nbcutelry" name="nbcutelry" type="number" onkeyup="setInterval(this.value)"><input id="date" name="date" type="datetime-local">{% for resslot in resslots %}
+
+            <button id="slot" type="submit">{{ resslot }}</button>
+        {% endfor %}</form>
 
 {% endblock %}
-{% block javascripts %}
+{# {% block javascripts %}#}
 
-{% endblock %}
+{#{% endblock %}#}
