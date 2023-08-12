@@ -2,27 +2,52 @@
 
 namespace App\Controller;
 
+use App\Entity\Cars;
+use App\Form\SearchFormType;
+use App\Model\CarsData;
+use App\Repository\CarsRepository;
+use App\Service\UploadPhoto;
 use Carbon\Carbon;
 use Carbon\Doctrine\DateTimeType;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+//use http\Env\Request;
+use Knp\Component\Pager\PaginatorInterface;
 use Spatie\OpeningHours\OpeningHours;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\ResSlots;
-
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\FormTypeInterface;
 
 
 class IndexController extends AbstractController
 {
     #[Route('/', name: 'app_index')]
-    public function index(): Response
+    public function index(EntityManagerInterface $entityManager,Request $req,PaginatorInterface $paginator): Response
     {
-
+        $cars = new CarsData();
+        $searchType = $this->createForm(SearchFormType::class,$cars);
+        $repository = $entityManager->getRepository(Cars::class);
+        $searchType->handleRequest($req);
+        if($searchType->isSubmitted() && $searchType->isValid()){
+            //dd($cars);
+            $criteria = $searchType->getData();
+            $cars = $repository->findBySearch($criteria);
+            dd($cars);
+        }
+        $pagination = $paginator->paginate(
+            $repository->paginateCars(),
+            $req->query->get('page',1),
+            5
+        );
         return $this->render('index/index.html.twig', [
             'controller_name' => 'IndexController',
-
+            //'cars' => $repository->findAll(),
+            'cars' => $pagination,
+            'form' => $searchType->createView()
         ]);
 
     }
@@ -73,7 +98,25 @@ class IndexController extends AbstractController
             //dd($openingHours->forWeek()),
         ]);
     }
+#[Route('/img', name: 'app_img')]
+    public function img(Request $req, SluggerInterface $sl){
 
+        $uploader = new UploadPhoto($req->get('file'), $sl);
+
+        return $this->render('index/img.html.twig',[
+            'controller_name' => 'IndexController',
+        ]);
+    }
+
+#[Route('/comment', name: 'app_img')]
+    public function commentar(Request $req, SluggerInterface $sl){
+
+
+
+        return $this->render('index/comment.html.twig',[
+
+        ]);
+    }
 
 
 }

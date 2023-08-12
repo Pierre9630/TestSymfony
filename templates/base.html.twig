@@ -25,10 +25,10 @@
         <!-- Collection of nav links, forms, and other content for toggling -->
         <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
             <div class="navbar-nav">
-                <a href="#" class="nav-item nav-link">Home</a>
-                <a href="{{ path('app_user_index') }}" class="nav-item nav-link">About</a>
-                <a href="#" class="nav-item nav-link active">Pricing</a>
-                <a href="#" class="nav-item nav-link">Blog</a>
+                <a href="#" class="nav-item nav-link">Accueil</a>
+                <a href="{{ path('app_user_index') }}" class="nav-item nav-link">Nos Véhicules</a>
+                <a href="#" class="nav-item nav-link active">Réparation</a>
+                {#  <a href="#" class="nav-item nav-link">Blog</a>#}
                 <a href="#" class="nav-item nav-link">Contact</a>
             </div>
 
@@ -56,11 +56,11 @@
                             </form>
                         </div>
                 </div>
-                <div class="nav-item">
-                    <a href="/new{#  {{ path('app_user_new') }} #}" data-toggle="dropdown" class="btn btn-primary sign-up-btn">Sign up</a>
+                {# <div class="nav-item">
+                    <a href="/new #}{#  {{ path('app_user_new') }} #} {#  " data-toggle="dropdown" class="btn btn-primary sign-up-btn">Sign up</a>
 
 
-                </div>
+                </div>  #}
             </div>
         </div>
     </nav>
